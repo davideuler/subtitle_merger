@@ -45,7 +45,7 @@ def main(srt_file1, srt_file2, output_file):
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
-        print("Usage: python merge_srt.py <srt_file1> <srt_file2> <output_file>")
+        print("Usage: python merge_subtitle.py <srt_file1> <srt_file2> <output_file>")
     else:
         srt_file1 = sys.argv[1]
         srt_file2 = sys.argv[2]

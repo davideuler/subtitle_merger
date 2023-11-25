@@ -1,25 +1,22 @@
+如何下载 youtube 带中英文字幕的视频， 并同时合并中英文字幕到视频中，制作成内嵌中英文字幕的视频。
 
-How to download a YouTube video with Chinese and English subtitles, and merge both Chinese and English subtitles into the video to create a video with embedded bilingual subtitles.
+其他多语言同理。
 
-The same applies to other languages.
-
-## 1.Download youtube videos with subtitle in multi languages.
+https://github.com/davideuler/subtitle_merger
+ 
+## 1.下载自动中英文字幕
+如果没有 srt 字幕， 使用选项强制转换成 srt 字幕：
 
 ```Bash
-yt-dlp --write-subs --write-auto-subs --sub-format SRT --sub-langs "en,en-orig,zh-Hans" --write-thumbnail --write-description https://www.youtube.com/xxxxx
-
-# or:
 yt-dlp --write-subs --write-auto-subs --sub-format srt --convert-subs "srt" --sub-langs "en,en-orig,zh-Hans" --write-thumbnail --write-description "https://www.youtube.com/watch?v=ZA9K0JMrbWg"
-
 ```
 
-## 2.To merge two subtitle files into one:
-
+## 2.合并中英文字幕文件为一个字幕文件
 ```bash
 python merge_subtitle.py <srt_file1> <srt_file2> merged_subtitles.srt
 ```
 
-The output file content is like this:
+输出的字幕文件内容样例：
 ```
     1
     00:00:00,000 --> 00:00:02,430
@@ -32,14 +29,12 @@ The output file content is like this:
 
 ```
 
-## 3.Then you can merge the subtitle file and origin video file.
-Thus you can get a video file with embedded subtitles in two languages.
-
-```
+## 3.合并字幕和视频为内嵌字幕的 mp4
+```bash
 ffmpeg -i input_video.mp4 -vf "subtitles=merged_subtitles.srt" -c:a copy output_video.mp4
 ```
 
-## Prerequisites
+## 前提条件
 ```Bash
 $ pip install -r requirements.txt
 
